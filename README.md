@@ -38,13 +38,15 @@ npm run dev
 
 5. Save and deploy. Cloudflare runs `npm ci` / `npm install` and `npm run build` on each push.
 
-6. Open the `*.pages.dev` URL. Direct links like `/sets/151` work via `public/_redirects` (SPA fallback).
+6. Open the `*.pages.dev` URL. Direct links like `/sets/151` use SPA fallback from `wrangler.toml` (`not_found_handling = "single-page-application"`). Do not add `public/_redirects` with `/* /index.html 200` when using `wrangler deploy` — Cloudflare rejects it as an infinite loop.
 
 ### Build failed on `npx wrangler deploy`
 
 **Missing entry-point / assets directory:** Push the latest repo (includes `wrangler.toml` `[assets]` for `dist`) and retry.
 
 **Wrangler requires Node.js v22:** This repo pins `wrangler@4.86.0` for Node 20 builds. Push latest `package.json` / lockfile, or set **NODE_VERSION** = `22` if you use a newer Wrangler.
+
+**Invalid _redirects / infinite loop:** Remove `public/_redirects`; SPA is handled in `wrangler.toml` only.
 
 **Still failing:** In **Settings → Build**, set **Deploy command** to `npm run deploy` (Pages upload) or clear deploy command if allowed, then retry.
 

@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "deploy": "wrangler pages deploy dist --project-name=tcg-tracker"
+    "deploy": "wrangler pages deploy dist --project-name=tcg-tracker",
+    "deploy:assets": "wrangler deploy"
   },
   "dependencies": {
     "papaparse": "^5.7.0",
