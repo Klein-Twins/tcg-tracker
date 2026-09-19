@@ -1,0 +1,1 @@
+Do not perform any git commands. This includes, but is not limited to, commits, pushes, and branch changes.
