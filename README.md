@@ -22,6 +22,9 @@ npm run dev
    | Build command | `npm run build` |
    | Build output directory | `dist` |
    | Root directory | `/` (leave empty) |
+   | **Deploy command** | **Leave empty** (do not use `npx wrangler deploy`) |
+
+   For Git-connected Pages, Cloudflare publishes the `dist` folder automatically after the build. A deploy command is only for manual/CLI workflows.
 
 4. Under **Environment variables** (Production), add optional:
 
@@ -34,6 +37,16 @@ npm run dev
 5. Save and deploy. Cloudflare runs `npm ci` / `npm install` and `npm run build` on each push.
 
 6. Open the `*.pages.dev` URL. Direct links like `/sets/151` work via `public/_redirects` (SPA fallback).
+
+### Build failed on `npx wrangler deploy`
+
+If the log shows **Execute user deploy command: npx wrangler deploy** and errors about a missing Worker entry-point:
+
+1. Open your Pages project → **Settings** → **Build** (or **Builds & deployments** → **Build configuration**).
+2. Clear the **Deploy command** field completely and save.
+3. **Retry deployment** (Deployments → … → Retry).
+
+Do not use `wrangler deploy` for this app. If you ever need a deploy command (unusual for Git Pages), use `npx wrangler pages deploy dist --project-name=tcg-tracker` instead.
 
 ### Custom domain (optional)
 
