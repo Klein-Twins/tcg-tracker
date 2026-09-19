@@ -22,9 +22,11 @@ npm run dev
    | Build command | `npm run build` |
    | Build output directory | `dist` |
    | Root directory | `/` (leave empty) |
-   | **Deploy command** | **Leave empty** (do not use `npx wrangler deploy`) |
+   | **Deploy command** | **Leave empty** if the UI allows it |
 
-   For Git-connected Pages, Cloudflare publishes the `dist` folder automatically after the build. A deploy command is only for manual/CLI workflows.
+   If Cloudflare **requires** a deploy command (some Workers Builds setups default to `npx wrangler deploy`), use either:
+   - `npx wrangler deploy` — works with this repo’s `wrangler.toml` (`[assets]` → `dist`), or
+   - `npm run deploy` — preferred for Pages (`wrangler pages deploy`).
 
 4. Under **Environment variables** (Production), add optional:
 
@@ -40,13 +42,9 @@ npm run dev
 
 ### Build failed on `npx wrangler deploy`
 
-If the log shows **Execute user deploy command: npx wrangler deploy** and errors about a missing Worker entry-point:
+**Missing entry-point / assets directory:** Push the latest repo (includes `wrangler.toml` `[assets]` for `dist`) and retry.
 
-1. Open your Pages project → **Settings** → **Build** (or **Builds & deployments** → **Build configuration**).
-2. Clear the **Deploy command** field completely and save.
-3. **Retry deployment** (Deployments → … → Retry).
-
-Do not use `wrangler deploy` for this app. If you ever need a deploy command (unusual for Git Pages), use `npx wrangler pages deploy dist --project-name=tcg-tracker` instead.
+**Still failing:** In **Settings → Build**, set **Deploy command** to `npm run deploy` (Pages upload) or clear deploy command if allowed, then retry.
 
 ### Custom domain (optional)
 
