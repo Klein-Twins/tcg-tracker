@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+
+# Java
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# Spring Boot
+.springBeans
+
+# Local overrides (use application-local.properties for dev-only settings)
+application-local.properties
+application-local.yml
+application-local.yaml
+
+# H2 / embedded DB files (if used locally)
+*.db
+*.trace.db
+
+# Package files
+*.zip
+*.tar.gz
+*.rar
