@@ -32,7 +32,7 @@ npm run dev
 
    | Variable | Value |
    | -------- | ----- |
-   | `NODE_VERSION` | `20` |
+   | `NODE_VERSION` | `20` (repo `.node-version`; use `22` only if you upgrade Wrangler past 4.86) |
 
    (Also set for Preview if you use preview deployments.)
 
@@ -43,6 +43,8 @@ npm run dev
 ### Build failed on `npx wrangler deploy`
 
 **Missing entry-point / assets directory:** Push the latest repo (includes `wrangler.toml` `[assets]` for `dist`) and retry.
+
+**Wrangler requires Node.js v22:** This repo pins `wrangler@4.86.0` for Node 20 builds. Push latest `package.json` / lockfile, or set **NODE_VERSION** = `22` if you use a newer Wrangler.
 
 **Still failing:** In **Settings → Build**, set **Deploy command** to `npm run deploy` (Pages upload) or clear deploy command if allowed, then retry.
 
